@@ -18,6 +18,8 @@ public class FrmJuego extends JFrame {
     private JLabel lblDado1, lblDado2;
     private Dado dado1, dado2;
     private Random r;
+    private int lanzamientos, cenas;
+    private JLabel lblLanzamientos;
 
     public FrmJuego() {
         setTitle("Juego de dados");
@@ -49,7 +51,7 @@ public class FrmJuego extends JFrame {
         lblTituloCenas.setHorizontalAlignment(SwingConstants.CENTER);
         getContentPane().add(lblTituloCenas);
 
-        JLabel lblLanzamientos = new JLabel("0");
+        lblLanzamientos = new JLabel("0");
         lblLanzamientos.setBounds(30 + 2 * imgDado.getIconWidth(), 40,
                 100, 100);
         lblLanzamientos.setBackground(new Color(0, 0, 0));
@@ -115,5 +117,9 @@ public class FrmJuego extends JFrame {
         // mostrar las caras que salieron de los dados con el metodo MOSTRAR
         dado1.mostrar(lblDado1);
         dado2.mostrar(lblDado2);
+
+        //incrementar los contadores
+        lanzamientos++;
+        lblLanzamientos.setText(String.valueOf(lanzamientos));
     }
 }
