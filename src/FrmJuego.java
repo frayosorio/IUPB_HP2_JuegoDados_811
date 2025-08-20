@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,20 +14,25 @@ import javax.swing.WindowConstants;
 
 public class FrmJuego extends JFrame {
 
+    // se declaran las variables GLOBALES
+    private JLabel lblDado1, lblDado2;
+    private Dado dado1, dado2;
+    private Random r;
+
     public FrmJuego() {
         setTitle("Juego de dados");
         setSize(600, 300);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
 
-        JLabel lblDado1 = new JLabel();
+        lblDado1 = new JLabel();
         String archivoImagen = "imagenes/4.jpg";
         ImageIcon imgDado = new ImageIcon(getClass().getResource(archivoImagen));
         lblDado1.setIcon(imgDado);
         lblDado1.setBounds(10, 10, imgDado.getIconWidth(), imgDado.getIconHeight());
         getContentPane().add(lblDado1);
 
-        JLabel lblDado2 = new JLabel();
+        lblDado2 = new JLabel();
         lblDado2.setIcon(imgDado);
         lblDado2.setBounds(20 + imgDado.getIconWidth(), 10,
                 imgDado.getIconWidth(), imgDado.getIconHeight());
@@ -79,7 +85,7 @@ public class FrmJuego extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 iniciarLanzamientos();
             }
-            
+
         });
 
         btnLanzar.addActionListener(new ActionListener() {
@@ -88,16 +94,26 @@ public class FrmJuego extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 lanzar();
             }
-            
+
         });
+
+        // instanciar objetos
+        dado1 = new Dado();
+        dado2 = new Dado();
+        r = new Random();
 
     }
 
-    private void iniciarLanzamientos(){
+    private void iniciarLanzamientos() {
         JOptionPane.showMessageDialog(null, "Hizo clicen el boton INICIAR");
     }
 
-    private void lanzar(){
-        JOptionPane.showMessageDialog(null, "Hizo clicen el boton LANZAR");
+    private void lanzar() {
+        // llamar los metodos LANZAR de cada dado
+        dado1.lanzar(r);
+        dado2.lanzar(r);
+        // mostrar las caras que salieron de los dados con el metodo MOSTRAR
+        dado1.mostrar(lblDado1);
+        dado2.mostrar(lblDado2);
     }
 }
