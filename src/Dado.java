@@ -12,13 +12,9 @@ public class Dado {
     }
 
     public void mostrar(JLabel lbl) {
-        String archivoImagen = "imagenes/" + cara + ".jpg";
+        String archivoImagen = "/imagenes/" + cara + ".jpg";
         ImageIcon imgDado = new ImageIcon(getClass().getResource(archivoImagen));
         lbl.setIcon(imgDado);
-    }
-
-    public int getCara() {
-        return cara;
     }
 
 }

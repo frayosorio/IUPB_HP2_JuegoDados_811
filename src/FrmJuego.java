@@ -14,30 +14,31 @@ import javax.swing.WindowConstants;
 
 public class FrmJuego extends JFrame {
 
-    // se declaran las variables GLOBALES
-    private JLabel lblDado1, lblDado2;
+    private JLabel lblDado1, lblDado2, lblLanzamientos;
     private Dado dado1, dado2;
     private Random r;
     private int lanzamientos, cenas;
-    private JLabel lblLanzamientos;
 
     public FrmJuego() {
-        setTitle("Juego de dados");
         setSize(600, 300);
+        setTitle("Juego de dados");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
 
         lblDado1 = new JLabel();
-        String archivoImagen = "imagenes/4.jpg";
+        String archivoImagen = "/imagenes/1.jpg";
         ImageIcon imgDado = new ImageIcon(getClass().getResource(archivoImagen));
         lblDado1.setIcon(imgDado);
-        lblDado1.setBounds(10, 10, imgDado.getIconWidth(), imgDado.getIconHeight());
+        lblDado1.setBounds(10, 10,
+                imgDado.getIconWidth(),
+                imgDado.getIconHeight());
         getContentPane().add(lblDado1);
 
         lblDado2 = new JLabel();
         lblDado2.setIcon(imgDado);
         lblDado2.setBounds(20 + imgDado.getIconWidth(), 10,
-                imgDado.getIconWidth(), imgDado.getIconHeight());
+                imgDado.getIconWidth(),
+                imgDado.getIconHeight());
         getContentPane().add(lblDado2);
 
         JLabel lblTituloLanzamientos = new JLabel("Lanzamientos");
@@ -54,21 +55,21 @@ public class FrmJuego extends JFrame {
         lblLanzamientos = new JLabel("0");
         lblLanzamientos.setBounds(30 + 2 * imgDado.getIconWidth(), 40,
                 100, 100);
-        lblLanzamientos.setBackground(new Color(0, 0, 0));
-        lblLanzamientos.setForeground(new Color(50, 255, 0));
-        lblLanzamientos.setFont(new Font("Tahoma", 1, 72));
-        lblLanzamientos.setOpaque(true);
         lblLanzamientos.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblLanzamientos.setFont(new Font("Tahoma", 1, 72));
+        lblLanzamientos.setBackground(new Color(0, 0, 0));
+        lblLanzamientos.setForeground(new Color(51, 255, 0));
+        lblLanzamientos.setOpaque(true);
         getContentPane().add(lblLanzamientos);
 
         JLabel lblCenas = new JLabel("0");
         lblCenas.setBounds(140 + 2 * imgDado.getIconWidth(), 40,
                 100, 100);
-        lblCenas.setBackground(new Color(0, 0, 0));
-        lblCenas.setForeground(new Color(50, 255, 0));
-        lblCenas.setFont(new Font("Tahoma", 1, 72));
-        lblCenas.setOpaque(true);
         lblCenas.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblCenas.setFont(new Font("Tahoma", 1, 72));
+        lblCenas.setBackground(new Color(0, 0, 0));
+        lblCenas.setForeground(new Color(51, 255, 0));
+        lblCenas.setOpaque(true);
         getContentPane().add(lblCenas);
 
         JButton btnIniciar = new JButton("Iniciar");
@@ -99,27 +100,29 @@ public class FrmJuego extends JFrame {
 
         });
 
-        // instanciar objetos
+        // Crear instancias de los dados y el generador de aleatorios
         dado1 = new Dado();
         dado2 = new Dado();
         r = new Random();
-
     }
 
     private void iniciarLanzamientos() {
-        JOptionPane.showMessageDialog(null, "Hizo clicen el boton INICIAR");
+        JOptionPane.showMessageDialog(null, "Hizo clic en Iniciar");
     }
 
     private void lanzar() {
-        // llamar los metodos LANZAR de cada dado
+        // lanzar los dados
         dado1.lanzar(r);
         dado2.lanzar(r);
-        // mostrar las caras que salieron de los dados con el metodo MOSTRAR
+
+        // mostrar los dados lanzados
         dado1.mostrar(lblDado1);
         dado2.mostrar(lblDado2);
 
-        //incrementar los contadores
+        // gestionar los contadores
         lanzamientos++;
         lblLanzamientos.setText(String.valueOf(lanzamientos));
+
     }
+
 }
