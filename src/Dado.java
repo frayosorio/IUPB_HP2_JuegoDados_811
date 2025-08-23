@@ -17,4 +17,10 @@ public class Dado {
         lbl.setIcon(imgDado);
     }
 
+    public int getCara() {
+        return cara;
+    }
+
+
+    
 }

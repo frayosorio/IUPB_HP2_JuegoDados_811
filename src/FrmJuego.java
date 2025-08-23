@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
 
 public class FrmJuego extends JFrame {
 
-    private JLabel lblDado1, lblDado2, lblLanzamientos;
+    private JLabel lblDado1, lblDado2, lblLanzamientos, lblCenas;
     private Dado dado1, dado2;
     private Random r;
     private int lanzamientos, cenas;
@@ -62,7 +62,7 @@ public class FrmJuego extends JFrame {
         lblLanzamientos.setOpaque(true);
         getContentPane().add(lblLanzamientos);
 
-        JLabel lblCenas = new JLabel("0");
+        lblCenas = new JLabel("0");
         lblCenas.setBounds(140 + 2 * imgDado.getIconWidth(), 40,
                 100, 100);
         lblCenas.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -107,7 +107,10 @@ public class FrmJuego extends JFrame {
     }
 
     private void iniciarLanzamientos() {
-        JOptionPane.showMessageDialog(null, "Hizo clic en Iniciar");
+        lanzamientos = 0;
+        cenas = 0;
+        lblLanzamientos.setText(String.valueOf(lanzamientos));
+        lblCenas.setText(String.valueOf(cenas));
     }
 
     private void lanzar() {
@@ -123,6 +126,10 @@ public class FrmJuego extends JFrame {
         lanzamientos++;
         lblLanzamientos.setText(String.valueOf(lanzamientos));
 
+        if (dado1.getCara() + dado2.getCara() >= 11) {
+            cenas++;
+            lblCenas.setText(String.valueOf(cenas));
+        }
     }
 
 }
